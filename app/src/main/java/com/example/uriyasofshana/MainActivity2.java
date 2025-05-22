@@ -1,5 +1,6 @@
 package com.example.uriyasofshana;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,13 +12,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.time.temporal.ValueRange;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity2 extends AppCompatActivity {
 
     TextView tvPlayerName, tvRight, tvLeft;
-    Button btnLeftSmallerRight, btnEqual, btnLeftBiggerRight;
+    Button btnLeftSmallerRight, btnEqual, btnLeftBiggerRight, btnScore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,32 +33,50 @@ public class MainActivity2 extends AppCompatActivity {
         });
         int count = 0;
         ArrayList<Questions> populateQuestions = new ArrayList<>(100);
-        for (int i = 0;i < populateQuestions.size(); i ++){
+        for (int i = 0; i < populateQuestions.size(); i++) {
             populateQuestions.set(i, new Questions());
         }
-
         tvRight = findViewById(R.id.tvRight);
         tvLeft = findViewById(R.id.tvLeft);
         btnEqual = findViewById(R.id.btnEqual);
-        btnEqual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if
-            }
-        });
         btnLeftBiggerRight = findViewById(R.id.btnLeftBiggerRight);
         btnLeftSmallerRight = findViewById(R.id.btnLeftSmallerRight);
-        for (int i = 0; i < 100; i ++){
+        btnScore = findViewById(R.id.btnScore);
+        for (int i = 0; i < 100; i++) {
+            int k = i;
             tvRight.setText(String.valueOf(populateQuestions.get(i).GetN1()));
             tvLeft.setText(String.valueOf(populateQuestions.get(i).GetN1()));
             btnEqual.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (populateQuestions.get(i).GetN1()) {
-                        count = count 1;
+                    if (populateQuestions.get(k).GetN1() == populateQuestions.get(k).GetN2()) {
+                        count++;
                     }
                 }
-            }
+            });
+            btnLeftBiggerRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (populateQuestions.get(k).GetN1() < populateQuestions.get(k).GetN2()) {
+                        count++;
+                    }
+                }
+            });
+            btnLeftSmallerRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (populateQuestions.get(k).GetN1() > populateQuestions.get(k).GetN2()) {
+                        count++;
+                    }
+                }
+            });
         }
+        btnScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
+                startActivity(intent);
+            }
+        });
     }
 }

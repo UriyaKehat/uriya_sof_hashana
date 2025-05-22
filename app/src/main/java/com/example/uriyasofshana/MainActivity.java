@@ -26,13 +26,15 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         String U1 = "Uriya", P1 = "1234";
+        String U2 = "Shakked", P2 = "4321";
+        String U3 = "Raday", P3 = "0000";
         et1 = findViewById(R.id.et1);
         et2 = findViewById(R.id.et2);
         btn1 = findViewById(R.id.btn1);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (et1.getText().toString().equals(U1) && et2.getText().toString().equals(P1)){
+                if ((et1.getText().toString().equals(U1) && et2.getText().toString().equals(P1)) || (et1.getText().toString().equals(U2) && et2.getText().toString().equals(P2)) || (et1.getText().toString().equals(U3) && et2.getText().toString().equals(P3))) {
                     Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                     startActivity(intent);
                 }
