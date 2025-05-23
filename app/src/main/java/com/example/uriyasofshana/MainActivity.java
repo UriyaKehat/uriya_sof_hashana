@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if ((et1.getText().toString().equals(U1) && et2.getText().toString().equals(P1)) || (et1.getText().toString().equals(U2) && et2.getText().toString().equals(P2)) || (et1.getText().toString().equals(U3) && et2.getText().toString().equals(P3))) {
                     Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                    intent.putExtra("UserName", et1.getText().toString());
                     startActivity(intent);
                 }
             }

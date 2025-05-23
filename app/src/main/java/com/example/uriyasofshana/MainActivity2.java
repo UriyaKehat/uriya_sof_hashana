@@ -31,6 +31,7 @@ public class MainActivity2 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        tvPlayerName.setText(getIntent().getStringExtra("UserName"));
         int count = 0;
         ArrayList<Questions> populateQuestions = new ArrayList<>(100);
         for (int i = 0; i < populateQuestions.size(); i++) {
@@ -42,7 +43,7 @@ public class MainActivity2 extends AppCompatActivity {
         btnLeftBiggerRight = findViewById(R.id.btnLeftBiggerRight);
         btnLeftSmallerRight = findViewById(R.id.btnLeftSmallerRight);
         btnScore = findViewById(R.id.btnScore);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i <= 100; i++) {
             int k = i;
             tvRight.setText(String.valueOf(populateQuestions.get(i).GetN1()));
             tvLeft.setText(String.valueOf(populateQuestions.get(i).GetN1()));
