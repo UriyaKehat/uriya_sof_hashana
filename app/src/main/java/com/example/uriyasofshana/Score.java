@@ -8,6 +8,8 @@ public class Score {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    private String playerScore;
+
     public int getId() {
         return id;
     }
@@ -23,6 +25,4 @@ public class Score {
     public void setPlayerScore(String playerScore) {
         this.playerScore = playerScore;
     }
-
-    private String playerScore;
 }

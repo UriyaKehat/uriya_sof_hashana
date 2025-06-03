@@ -16,13 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Random;
 
 public class MainActivity3 extends AppCompatActivity {
-    String[] motivation;
+
+    DataBase db = DataBase.getInstance(this);
+    private String[] motivation;
     Random random = new Random();
     int randomNumber = random.nextInt(6);
     Button btnGoBack;
     Adapter adapter;
     RecyclerView recyclerView;
-    private String[] gamesPoints;
+    //private String[] gamesPoints;
     String name;
     int scorePercent;
     @Override
@@ -46,8 +48,7 @@ public class MainActivity3 extends AppCompatActivity {
         scorePercent = getIntent().getIntExtra("scorePercent", 0);
         //gamesPoints = new String[100];
         //for (int i = 0;i < gamesPoints.length; i++){
-            //gamesPoints[i] =
-        name + "| Score Percent " + scorePercent + " | " + motivation[randomNumber];
+            //gamesPoints[i] = name + "| Score Percent " + scorePercent + " | " + motivation[randomNumber];
         //}
         btnGoBack = findViewById(R.id.btnGoBack);
         btnGoBack.setOnClickListener(new View.OnClickListener() {
@@ -57,10 +58,9 @@ public class MainActivity3 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        gamesPoints = getallfromdatabase;
+        //gamesPoints = getAllFromDataBase;
         this.recyclerView = findViewById(R.id.RecyclerView);
-        adapter = new Adapter(MainActivity3.this, gamesPoints);
+        adapter = new Adapter(MainActivity3.this,/*gamesPoints*/);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity3.this));
         recyclerView.setAdapter(adapter);
     }
