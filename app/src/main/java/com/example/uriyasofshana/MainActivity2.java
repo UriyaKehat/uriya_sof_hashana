@@ -23,6 +23,7 @@ public class MainActivity2 extends AppCompatActivity {
     int countRight = 0;
     int count = 0;
     TextView tvPlayerName, tvRight, tvLeft;
+    String userName;
     Button btnLeftSmallerRight, btnEqual, btnLeftBiggerRight, btnScore;
 
     @Override
@@ -35,10 +36,12 @@ public class MainActivity2 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        tvPlayerName.setText("hello" + getIntent().getStringExtra("UserName"));
-        ArrayList<Questions> populateQuestions = new ArrayList<>(100);
-        for (int i = 0; i < populateQuestions.size(); i++) {
-            populateQuestions.set(i, new Questions());
+        tvPlayerName = findViewById(R.id.tvPlayerName);
+        userName = getIntent().getStringExtra("UserName");
+        tvPlayerName.setText("hello" + userName );
+        ArrayList<Questions> populateQuestions = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            populateQuestions.add( new Questions());
         }
         tvRight = findViewById(R.id.tvRight);
         tvLeft = findViewById(R.id.tvLeft);
@@ -46,20 +49,20 @@ public class MainActivity2 extends AppCompatActivity {
         btnLeftBiggerRight = findViewById(R.id.btnLeftBiggerRight);
         btnLeftSmallerRight = findViewById(R.id.btnLeftSmallerRight);
         btnScore = findViewById(R.id.btnScore);
-            tvRight.setText(String.valueOf(populateQuestions.get(k).GetN1()));
-            tvLeft.setText(String.valueOf(populateQuestions.get(k).GetN1()));
-            btnEqual.setOnClickListener(new View.OnClickListener() {
+        tvRight.setText(String.valueOf(populateQuestions.get(k).GetN1()));
+        tvLeft.setText(String.valueOf(populateQuestions.get(k).GetN2()));
+        btnEqual.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (populateQuestions.get(k).GetN1() == populateQuestions.get(k).GetN2()) {
                         countRight++;
                     }
                     else {
-                        Toast.makeText(MainActivity2.this, "Button clicked!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity2.this, "Wrong!", Toast.LENGTH_SHORT).show();
                     }
-                    tvRight.setText(String.valueOf(populateQuestions.get(k).GetN1()));
-                    tvLeft.setText(String.valueOf(populateQuestions.get(k).GetN1()));
                     k++;
+                    tvRight.setText(String.valueOf(populateQuestions.get(k).GetN1()));
+                    tvLeft.setText(String.valueOf(populateQuestions.get(k).GetN2()));
                     count++;
                 }
             });
@@ -70,11 +73,11 @@ public class MainActivity2 extends AppCompatActivity {
                         countRight++;
                     }
                     else {
-                        Toast.makeText(MainActivity2.this, "Button clicked!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity2.this, "Wrong!", Toast.LENGTH_SHORT).show();
                     }
-                    tvRight.setText(String.valueOf(populateQuestions.get(k).GetN1()));
-                    tvLeft.setText(String.valueOf(populateQuestions.get(k).GetN1()));
                     k++;
+                    tvRight.setText(String.valueOf(populateQuestions.get(k).GetN1()));
+                    tvLeft.setText(String.valueOf(populateQuestions.get(k).GetN2()));
                     count++;
                 }
             });
@@ -85,11 +88,11 @@ public class MainActivity2 extends AppCompatActivity {
                         countRight++;
                     }
                     else {
-                        Toast.makeText(MainActivity2.this, "Button clicked!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity2.this, "Wrong!", Toast.LENGTH_SHORT).show();
                     }
-                    tvRight.setText(String.valueOf(populateQuestions.get(k).GetN1()));
-                    tvLeft.setText(String.valueOf(populateQuestions.get(k).GetN1()));
                     k++;
+                    tvRight.setText(String.valueOf(populateQuestions.get(k).GetN1()));
+                    tvLeft.setText(String.valueOf(populateQuestions.get(k).GetN2()));
                     count++;
                 }
             });
@@ -97,8 +100,9 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int percent;
-                percent = (count * countRight) / 100;
+                percent = ( (countRight* 100)/count) ;
                 Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
+                intent.putExtra("UserName",userName);
                 intent.putExtra("scorePercent", percent);
                 startActivity(intent);
             }

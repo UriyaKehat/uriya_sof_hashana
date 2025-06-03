@@ -24,7 +24,7 @@ public class MainActivity3 extends AppCompatActivity {
     RecyclerView recyclerView;
     private String[] gamesPoints;
     String name;
-    int scorePercent = getIntent().getIntExtra("score", 0);
+    int scorePercent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public class MainActivity3 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        motivation = new String[5];
+        motivation = new String[6];
         motivation[0] = "Well Done!";
         motivation[1] = "Good Job!";
         motivation[2] = "Very Good!";
@@ -43,10 +43,12 @@ public class MainActivity3 extends AppCompatActivity {
         motivation[4] = "Breaking Records!";
         motivation[5] = "World Champion Level!";
         name = (getIntent().getStringExtra("UserName"));
-        gamesPoints = new String[100];
-        for (int i = 0;i < gamesPoints.length; i++){
-        gamesPoints[i] = name + "| Score Percent " + scorePercent + " | " + motivation[randomNumber];
-        }
+        scorePercent = getIntent().getIntExtra("scorePercent", 0);
+        //gamesPoints = new String[100];
+        //for (int i = 0;i < gamesPoints.length; i++){
+            //gamesPoints[i] =
+        name + "| Score Percent " + scorePercent + " | " + motivation[randomNumber];
+        //}
         btnGoBack = findViewById(R.id.btnGoBack);
         btnGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,8 +57,11 @@ public class MainActivity3 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        gamesPoints = getallfromdatabase;
         this.recyclerView = findViewById(R.id.RecyclerView);
-        adapter = new Adapter(MainActivity3.this, adapter.mData);
+        adapter = new Adapter(MainActivity3.this, gamesPoints);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity3.this));
+        recyclerView.setAdapter(adapter);
     }
 }

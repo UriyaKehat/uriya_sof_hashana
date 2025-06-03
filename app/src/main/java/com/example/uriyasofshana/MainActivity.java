@@ -15,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     EditText et1,et2;
     Button btn1;
+
+    public final static String KEY_INTENT="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        String U1 = "Uriya", P1 = "1234";
+        String U1 = "1", P1 = "1";
         String U2 = "Shakked", P2 = "4321";
         String U3 = "Raday", P3 = "0000";
         et1 = findViewById(R.id.et1);
